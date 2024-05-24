@@ -1,1 +1,102 @@
-rodasrc
+//-------------------------------//  Define os pinos dos Motores //-------------------------------//
+#define VelMotor1 11
+#define Motor1A 12
+
+#define Motor1B 13
+
+#define VelMotor2 9
+#define Motor2A 8
+#define Motor2B 7
+//-------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------'-------------------------------------------//
+
+void Configuracao();
+
+//-------------------------------//  Define as Variáveis do Programa //-------------------------------//
+int VelMax = 100;
+
+//-----------------------------------------------------------------------------------------------------//
+
+void setup() {    Configuracao();   }
+
+
+void loop() {
+
+  
+  char c = Serial.read();
+
+if (c == 'F'){ 
+  
+  digitalWrite(Motor1A, 1);
+  digitalWrite(Motor1B, 0);
+  analogWrite(VelMotor1, VelMax);
+ 
+
+  digitalWrite(Motor2A, 0);
+  digitalWrite(Motor2B, 1);
+  analogWrite(VelMotor2, VelMax);
+  }
+
+  if (c == 'B'){ 
+  
+  digitalWrite(Motor1A, 0);
+  digitalWrite(Motor1B, 1);
+  analogWrite(VelMotor1, VelMax);
+ 
+
+  digitalWrite(Motor2A, 1);
+  digitalWrite(Motor2B, 0);
+  analogWrite(VelMotor2, VelMax);
+  }
+if (c == 'L'){ 
+  
+  digitalWrite(Motor1A, 1);
+  digitalWrite(Motor1B, 0);
+  analogWrite(VelMotor1, VelMax);
+ 
+
+  digitalWrite(Motor2A, 1);
+  digitalWrite(Motor2B, 0);
+  analogWrite(VelMotor2, VelMax);
+  }
+
+if (c == 'R'){ 
+  
+  digitalWrite(Motor1A, 0);
+  digitalWrite(Motor1B, 1);
+  analogWrite(VelMotor1, VelMax);
+ 
+
+  digitalWrite(Motor2A, 0);
+  digitalWrite(Motor2B, 1);
+  analogWrite(VelMotor2, VelMax);
+  }
+
+
+
+if (c == 'S'){ 
+  
+  digitalWrite(Motor1A, 0);
+  digitalWrite(Motor1B, 0);
+ 
+  digitalWrite(Motor2A, 0);
+  digitalWrite(Motor2B, 0);
+  }
+
+
+} 
+
+//-------------------------------//  Define as Configurações do Programa //-------------------------------//
+void Configuracao(){
+
+  pinMode(Motor1A, OUTPUT);
+  pinMode(Motor1B, OUTPUT);
+  pinMode(VelMotor1, OUTPUT);
+
+  pinMode(Motor2A, OUTPUT);
+  pinMode(Motor2B, OUTPUT);
+  pinMode(VelMotor2, OUTPUT);
+
+  Serial.begin(9600);
+}
