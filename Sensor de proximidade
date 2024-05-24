@@ -1,0 +1,44 @@
+#define LED 5
+#define BUZZER 4
+#define TRIGGER 3
+#define ECHO 2
+int sinal, distancia; 
+int limite = 10;  //declarar entradas dos componentes;
+
+
+void setup()
+{
+  pinMode(LED, OUTPUT);
+  pinMode(TRIGGER, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(BUZZER, OUTPUT);   //declarando pinos
+  
+}
+
+void loop()
+{
+  /* primeira etapa é enviar pulsos pelo sensor */
+  digitalWrite(TRIGGER, LOW);
+  delay(2);
+  digitalWrite(TRIGGER, HIGH); //envio de pulso
+  delay(5);
+  digitalWrite(TRIGGER, LOW);
+  
+  /*segunda etapa é captar o sinal*/
+  sinal = pulseIn(ECHO, HIGH);
+  
+  /*terceira etapa é converter o sinal obtido para distancia em cm*/
+  distancia = ( sinal / 58);
+  
+  /*a ultima etapa é a ativação do buzzer e do led
+  	de acordo com o limite estabelecido e o sinal captado*/
+  
+  if(distancia <= limite)
+  {
+  	tone(BUZZER, 1100, 100);//(buzzer, tom que ira tocar, tempo)
+  	delay(250);
+    digitalWrite(LED,HIGH);
+  	delay (250);
+    digitalWrite(LED,LOW);
+  } 
+}
